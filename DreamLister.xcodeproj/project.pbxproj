@@ -24,6 +24,7 @@
 		F427EB771E958CAD0014E3C5 /* ItemType+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F427EB6F1E958CAD0014E3C5 /* ItemType+CoreDataClass.swift */; };
 		F427EB781E958CAD0014E3C5 /* ItemType+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F427EB701E958CAD0014E3C5 /* ItemType+CoreDataProperties.swift */; };
 		F47C300E1E96B05F00E6D7D2 /* MaterialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47C300D1E96B05F00E6D7D2 /* MaterialView.swift */; };
+		F47C30101E96B83600E6D7D2 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47C300F1E96B83600E6D7D2 /* ItemCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		F427EB6F1E958CAD0014E3C5 /* ItemType+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ItemType+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F427EB701E958CAD0014E3C5 /* ItemType+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ItemType+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F47C300D1E96B05F00E6D7D2 /* MaterialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaterialView.swift; sourceTree = "<group>"; };
+		F47C300F1E96B83600E6D7D2 /* ItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				F47C300D1E96B05F00E6D7D2 /* MaterialView.swift */,
+				F47C300F1E96B83600E6D7D2 /* ItemCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -313,6 +316,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F47C30101E96B83600E6D7D2 /* ItemCell.swift in Sources */,
 				F427EB761E958CAD0014E3C5 /* Image+CoreDataProperties.swift in Sources */,
 				F427EB741E958CAD0014E3C5 /* Item+CoreDataProperties.swift in Sources */,
 				F427EB771E958CAD0014E3C5 /* ItemType+CoreDataClass.swift in Sources */,
