@@ -4,19 +4,24 @@
 //
 //  Created by Bryan Fein on 4/5/17.
 //  Copyright © 2017 Bryan Fein. All rights reserved.
-//  This file was automatically generated and should not be edited.
 //
 
 import Foundation
 import CoreData
 
-@objc(Item)
 
 public class Item: NSManagedObject {
-    
-    //set up time stamps
-    
-    
 
-
+    
+    //anytime this item gets inserted in the NSManaged object context // when you create this item from the enitity this function will be called.
+    
+    public override func awakeFromInsert() {
+        
+        //call the super class
+        super.awakeFromInsert()
+        
+        // assign the NSDate to the atribute created
+        self.created = NSDate()
+    }
+    
 }
