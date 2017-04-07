@@ -12,6 +12,10 @@ import CoreData
 
 class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,NSFetchedResultsControllerDelegate {
     
+    
+
+    
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var segment: UISegmentedControl!
     
@@ -95,6 +99,8 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         //setting the outside controller to the inside controller
         self.controller = controller
         
+        //tell the methods what to do 
+       controller.delegate = self
         
         //Preform the ACTUAL fectch
         do{
