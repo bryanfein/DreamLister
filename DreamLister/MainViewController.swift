@@ -13,7 +13,7 @@ import CoreData
 class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,NSFetchedResultsControllerDelegate {
     
     
-
+    
     
     
     @IBOutlet weak var tableView: UITableView!
@@ -31,7 +31,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         testData()
         attemptFetch()
-
         
     }
     
@@ -52,7 +51,28 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         let item = controller.object(at: indexPath)
         cell.configureCell(item: item)
         
+        
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if let objs = controller.fetchedObjects, objs.count > 0 {
+            let item = objs[indexPath.row]
+            
+            performSegue(withIdentifier: "ItemDetailsVC", sender: item)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ItemDetailsVC" {
+            if let destination = segue.destination as? ItemDetailsViewController {
+                if let item = sender as? Item {
+                    destination.itemToEdit = item
+                }
+            }
+        }
+    }
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //grabbing the sections out of the controller
@@ -99,8 +119,8 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         //setting the outside controller to the inside controller
         self.controller = controller
         
-        //tell the methods what to do 
-       controller.delegate = self
+        //tell the methods what to do
+        controller.delegate = self
         
         //Preform the ACTUAL fectch
         do{

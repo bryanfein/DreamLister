@@ -18,6 +18,7 @@ class ItemDetailsViewController: UIViewController, UIPickerViewDataSource, UIPic
     @IBOutlet weak var detailsField: CustomTextField!
     
     var stores = [Store]()
+    var itemToEdit : Item?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,6 +55,10 @@ class ItemDetailsViewController: UIViewController, UIPickerViewDataSource, UIPic
         //save the context
         ad.saveContext()
         getStores()
+        
+        if itemToEdit != nil {
+            loadItemData()
+        }
         
     }
     
@@ -94,7 +99,16 @@ class ItemDetailsViewController: UIViewController, UIPickerViewDataSource, UIPic
     
     @IBAction func saveButton(_ sender: UIButton) {
         
-        let item = Item(context: context)
+        var item : Item!
+        //updating the cell not creating a new one
+    
+        if itemToEdit == nil {
+            
+            item = Item(context: context)
+            
+        }else {
+            item = itemToEdit
+        }
         
         if let title = titleField.text {
             item.title = title
@@ -117,7 +131,50 @@ class ItemDetailsViewController: UIViewController, UIPickerViewDataSource, UIPic
         _ = navigationController?.popViewController(animated: true)
         
     }
+    
+    
+    func loadItemData(){
+        
+        if let item = itemToEdit {
+            
+            titleField.text = item.title
+            PriceField.text = "\(item.price)"
+            detailsField.text = item.details
+            
+            
+            if let store = item.toStore {
+                
+                var index = 0
+                repeat {
+                    
+                    let s = stores[index]
+                    
+                    if s.name == store.name {
+                        strorePicker.selectRow(index, inComponent: 0, animated: false)
+                        break
+                    }
+                    index += 1
+                    
+                } while (index < stores.count)
+            }
+        }
+        
+    }
+    
+    
 
+    @IBAction func deleteButton(_ sender: UIBarButtonItem) {
+        
+        if itemToEdit != nil {
+            context.delete(itemToEdit!)
+            ad.saveContext()
+        }
+        
+        
+        _ = navigationController?.popViewController(animated: true)
+    }
+
+    
     
 }
 
