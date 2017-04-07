@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class ItemDetailsViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+class ItemDetailsViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     
     @IBOutlet weak var strorePicker: UIPickerView!
@@ -17,15 +17,19 @@ class ItemDetailsViewController: UIViewController, UIPickerViewDataSource, UIPic
     @IBOutlet weak var PriceField: CustomTextField!
     @IBOutlet weak var detailsField: CustomTextField!
     
+    @IBOutlet weak var thumbImage: UIImageView!
+
+    
     var stores = [Store]()
     var itemToEdit : Item?
+    var imagePicker: UIImagePickerController!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // "hide" the text for the backButton item
         if let topItem = self.navigationController?.navigationBar.topItem {
-            
             topItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
             
         }
@@ -33,6 +37,8 @@ class ItemDetailsViewController: UIViewController, UIPickerViewDataSource, UIPic
         strorePicker.delegate = self
         strorePicker.dataSource = self
         
+        imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
         
         let store = Store(context: context)
         store.name = "Best Buy"
@@ -102,14 +108,22 @@ class ItemDetailsViewController: UIViewController, UIPickerViewDataSource, UIPic
         var item : Item!
         //updating the cell not creating a new one
     
+        let picture = Image(context: context)
+        picture.image = thumbImage.image
+        
+        
         if itemToEdit == nil {
             
             item = Item(context: context)
             
-        }else {
+        } else {
             item = itemToEdit
         }
         
+        item.toImage = picture
+
+        
+        //enitiy to an enitit
         if let title = titleField.text {
             item.title = title
         }
@@ -140,7 +154,7 @@ class ItemDetailsViewController: UIViewController, UIPickerViewDataSource, UIPic
             titleField.text = item.title
             PriceField.text = "\(item.price)"
             detailsField.text = item.details
-            
+            thumbImage.image = item.toImage?.image as? UIImage
             
             if let store = item.toStore {
                 
@@ -174,6 +188,24 @@ class ItemDetailsViewController: UIViewController, UIPickerViewDataSource, UIPic
         _ = navigationController?.popViewController(animated: true)
     }
 
+    
+    @IBAction func addImage(_ sender: UIButton) {
+        
+        present(imagePicker, animated: true, completion: nil)
+        
+        
+    }
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        if let img = info[UIImagePickerControllerOriginalImage] as? UIImage {
+
+            thumbImage.image = img
+        }
+        
+        imagePicker.dismiss(animated: true, completion: nil)
+    }
+    
+    
     
     
 }

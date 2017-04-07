@@ -158,7 +158,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imagePick" translatesAutoresizingMaskIntoConstraints="NO" id="bnP-8u-01D">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imagePick" translatesAutoresizingMaskIntoConstraints="NO" id="bnP-8u-01D">
                                 <rect key="frame" x="16" y="72" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="Gfg-FU-mqw"/>
@@ -171,6 +171,9 @@
                                     <constraint firstAttribute="height" constant="100" id="31s-KF-ZBp"/>
                                     <constraint firstAttribute="width" constant="100" id="n96-i5-wY0"/>
                                 </constraints>
+                                <connections>
+                                    <action selector="addImage:" destination="6Hq-Ha-8XB" eventType="touchUpInside" id="U3Z-aG-UCy"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4Yd-hv-vOK" customClass="CustomTextField" customModule="DreamLister" customModuleProvider="target">
                                 <rect key="frame" x="124" y="84" width="235" height="40"/>
@@ -270,6 +273,7 @@
                         <outlet property="PriceField" destination="bPQ-rg-3IJ" id="DiY-nH-fW2"/>
                         <outlet property="detailsField" destination="Ffi-3Q-DQh" id="4BF-bV-xMk"/>
                         <outlet property="strorePicker" destination="dqe-oD-MkE" id="sWx-DF-lMA"/>
+                        <outlet property="thumbImage" destination="bnP-8u-01D" id="PDI-oG-zgY"/>
                         <outlet property="titleField" destination="4Yd-hv-vOK" id="tk8-fE-nLJ"/>
                     </connections>
                 </viewController>
