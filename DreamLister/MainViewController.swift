@@ -111,7 +111,24 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         //We are sorting the items based on the time stamp
         let dateSort = NSSortDescriptor(key: "created", ascending: false)
         
-        fetchRequest.sortDescriptors = [dateSort]
+        let priceSort = NSSortDescriptor(key: "price", ascending: true)
+        let titleSort = NSSortDescriptor(key: "title", ascending: true)
+        
+        
+        //the segment sort
+        if segment.selectedSegmentIndex == 0 {
+            
+             fetchRequest.sortDescriptors = [dateSort]
+        } else if segment.selectedSegmentIndex == 1 {
+            
+            fetchRequest.sortDescriptors = [priceSort]
+        }else if segment.selectedSegmentIndex == 2 {
+            
+            fetchRequest.sortDescriptors = [titleSort]
+        }
+        
+        
+       
         
         //create a controller and pass in what request we are going to pass in
         let controller = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
@@ -129,6 +146,12 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             let error = error as NSError
             print("\(error)")
         }
+        
+    }
+    @IBAction func segmentChange(_ sender: Any) {
+        
+        attemptFetch()
+        tableView.reloadData()
         
     }
     
